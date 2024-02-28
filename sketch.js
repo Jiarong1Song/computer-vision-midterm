@@ -77,12 +77,17 @@ function draw() {
     let pose = poses[0].pose;
     eyeDistance = dist(pose.nose.x, pose.nose.y, pose.rightEye.x, pose.rightEye.y);
 
-    textSize(30);
-    fill(0, 0, 0);
-    //text(`Eye Distance: ${eyeDistance}`, 15, 40);
-
     // Call eyeDetection here
     eyeDetection();
+
+    push()
+    textSize(30);
+    textAlign(LEFT)
+    fill(0, 0, 0);
+    //text(`Eye Distance: ${eyeDistance}`, 15, 40);
+    pop()
+
+    
 
     // Play the song once each time eyeDistance goes over 120
     if (eyeDistance > 120 && !playFlag1) {
@@ -91,14 +96,14 @@ function draw() {
       playFlag2 = false; 
     }
     
-    if (eyeDistance < 70 && !playFlag2) {
+    if (eyeDistance < 50 && !playFlag2) {
       song2.play();
       playFlag1 = false;
       playFlag2 = true; 
     }
 
     // Reset the flag when eyeDistance is less than 120
-    if (eyeDistance >= 70 && playFlag2) {
+    if (eyeDistance >= 50 && playFlag2) {
       playFlag2 = false;
     }
     if (eyeDistance <= 120 && playFlag1) {
@@ -116,7 +121,7 @@ function eyeDetection() {
     let noseY = pose.nose.y;
     textAlign(CENTER)
 
-    if (eyeDistance < 70) {
+    if (eyeDistance < 50) {
       push();
       mirror();
       textFont('Luminari');
@@ -133,7 +138,7 @@ function eyeDetection() {
       textFont('Basikerville');
       textSize(100);
       fill(255, 0, 0);
-      threshold(); // Apply threshold effect if needed
+      threshold(); 
       text('WARNING', noseX, noseY - 80);
       pop();
     }

@@ -90,7 +90,7 @@ function draw() {
     
 
     // Play the song once each time eyeDistance goes over 120
-    if (eyeDistance > 120 && !playFlag1) {
+    if (eyeDistance > 100 && !playFlag1) {
       song1.play();
       playFlag1 = true;
       playFlag2 = false; 
@@ -106,7 +106,7 @@ function draw() {
     if (eyeDistance >= 50 && playFlag2) {
       playFlag2 = false;
     }
-    if (eyeDistance <= 120 && playFlag1) {
+    if (eyeDistance <= 100 && playFlag1) {
       playFlag1 = false;
     }
   }
@@ -129,7 +129,7 @@ function eyeDetection() {
       fill(255, 0, 255); // Different color for this condition
       text('Great!', noseX, noseY - 80);
       pop();
-    } else if (eyeDistance < 120) {
+    } else if (eyeDistance < 100) {
       textSize(50);  
       fill(0, 255, 0);
       text('Not Bad', noseX, noseY - 80);
